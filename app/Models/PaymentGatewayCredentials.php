@@ -176,6 +176,7 @@ class PaymentGatewayCredentials extends BaseModel
     public function getShowPayAttribute()
     {
         return in_array('active', [
+            $this->attributes['benefit_status'],
             $this->attributes['paypal_status'],
             $this->attributes['stripe_status'],
             $this->attributes['paystack_status'],
@@ -195,6 +196,7 @@ class PaymentGatewayCredentials extends BaseModel
     public function getShowPayWebhookAttribute()
     {
         return in_array('active', [
+            $this->attributes['benefit_status'],
             $this->attributes['paypal_status'],
             $this->attributes['stripe_status'],
             $this->attributes['paystack_status'],

@@ -102,8 +102,28 @@ class Expense extends BaseModel
         'purchase_date' => 'datetime',
         'purchase_on' => 'datetime',
     ];
+
+    protected $fillable = [
+        'item_name',
+        'purchase_date',
+        'purchase_from',
+        'price',
+        'currency_id',
+        'category_id',
+        'user_id',
+        'default_currency_id',
+        'exchange_rate',
+        'description',
+        'status',
+        'approver_id',
+        'project_id',
+        'bill',
+        'bank_account_id',
+        'client_id',
+    ];
+
     protected $appends = ['total_amount', 'purchase_on', 'bill_url', 'default_currency_price'];
-    protected $with = ['currency', 'company:id'];
+    protected $with = ['currency', 'company:id', 'clients'];
 
     public function getBillUrlAttribute()
     {
@@ -192,7 +212,7 @@ class Expense extends BaseModel
         return $this->belongsTo(BankAccount::class, 'bank_account_id');
     }
 
-    public function clients(): BelongsTo
+    public function clients()
     {
         return $this->belongsTo(User::class, 'client_id');
     }

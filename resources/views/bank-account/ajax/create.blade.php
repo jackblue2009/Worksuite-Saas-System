@@ -89,6 +89,7 @@
                             :fieldPlaceholder="__('placeholders.date')"
                             fieldRequired="true"
                             :fieldValue="now()->format(company()->date_format)"
+                            :fieldType="'date'"
                         />
                     </div>
 

@@ -160,7 +160,7 @@ class ExpenseController extends AccountBaseController
             $expense->price = round($request->price, 2);
             $expense->currency_id = $request->currency_id;
             $expense->category_id = $request->category_id;
-            $expense->user_id = $request->user_id;
+            $expense->user_id = $request->user_id ?? null;              // make user_id optional
             $expense->default_currency_id = company()->currency_id;
             $expense->exchange_rate = $request->exchange_rate;
             $expense->description = trim_editor($request->description);
@@ -205,6 +205,7 @@ class ExpenseController extends AccountBaseController
             return Reply::successWithData(__('messages.recordSaved'), ['redirectUrl' => $redirectUrl]);
         } catch (\Exception $e) {
             \Log::error('Error saving expense: '. $e->getMessage());
+            \Log::error('Request data: '. json_encode($request->all()));
             return Reply::error(__('messages.recordSavedError'));
         }
         
@@ -273,7 +274,7 @@ class ExpenseController extends AccountBaseController
         $expense->purchase_from = $request->purchase_from;
         $expense->price = round($request->price, 2);
         $expense->currency_id = $request->currency_id;
-        $expense->user_id = $request->user_id;
+        $expense->user_id = $request->user_id ?? null;                  // make user_id optional
         $expense->category_id = $request->category_id;
         $expense->default_currency_id = company()->currency_id;
         $expense->exchange_rate = $request->exchange_rate;

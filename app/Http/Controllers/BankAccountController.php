@@ -89,6 +89,7 @@ class BankAccountController extends AccountBaseController
         $account->contact_number = $request->contact_number;
         $account->opening_balance = round($request->opening_balance, 2);
         $account->status = $request->status;
+        $account->opening_date = Carbon::parse($request->opening_date)->format('Y-m-d');
 
         if ($request->type == 'bank') {
             $account->bank_name = $request->bank_name;
@@ -175,6 +176,7 @@ class BankAccountController extends AccountBaseController
         $account->contact_number = $request->contact_number;
         $account->opening_balance = round($request->opening_balance, 2);
         $account->status = $request->status;
+        $account->opening_date = Carbon::parse($request->opening_date)->format('Y-m-d');
 
         if ($request->type == 'bank') {
             $account->bank_name = $request->bank_name;

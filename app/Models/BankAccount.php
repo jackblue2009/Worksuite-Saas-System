@@ -62,6 +62,8 @@ class BankAccount extends BaseModel
 
     protected $with = ['currency'];
     protected $appends = ['file_url'];
+    
+    protected $dates = ['opening_date'];
 
     public function currency(): BelongsTo
     {

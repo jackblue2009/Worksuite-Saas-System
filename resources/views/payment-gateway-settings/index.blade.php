@@ -13,6 +13,16 @@
                     <nav class="tabs border-bottom-grey">
                         <ul class="nav -primary" id="nav-tab" role="tablist">
                             <li>
+                                <!-- BENEFIT TAB ITEM ADDED HERE -->
+                                <a class="nav-item nav-link f-15 benefit" data-toggle="tab"
+                                   href="{{ route('payment-gateway-settings.index') }}?tab=benefit" role="tab"
+                                   aria-controls="nav-benefit"
+                                   aria-selected="true"><img style="height: 15px;"
+                                                             src="{{ asset('img/benefit.png') }}"> @lang('app.benefit') <i
+                                        class="fa fa-circle f-12 ml-1 {{ $credentials->benefit_status == 'active' ? 'text-light-green' : 'text-red' }}"></i>
+                                </a>
+                            </li>
+                            <li>
 
                                 <a class="nav-item nav-link f-15 active paypal" data-toggle="tab"
                                    href="{{ route('payment-gateway-settings.index') }}" role="tab"
@@ -67,7 +77,7 @@
                                 </a>
                             </li>
 
-                            <li>
+                            {{-- <li>
                                 <a class="nav-item nav-link f-15 authorize" data-toggle="tab"
                                    href="{{ route('payment-gateway-settings.index') }}?tab=authorize" role="tab"
                                    aria-controls="nav-authorize" aria-selected="false"><img style="height: 15px;"
@@ -75,7 +85,7 @@
                                     <i
                                         class="fa fa-circle f-12 ml-1 {{ $credentials->authorize_status == 'active' ? 'text-light-green' : 'text-red' }}"></i>
                                 </a>
-                            </li>
+                            </li> --}}
 
                             <li>
                                 <a class="nav-item nav-link f-15 square" data-toggle="tab"

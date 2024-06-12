@@ -134,6 +134,7 @@ $approveExpensePermission = user()->permission('approve_expenses');
                         </div>
                     @endif
                     <!-- New Client list drop down here -->
+
                     <div class="col-md-6 col-lg-3">
                         <x-forms.select fieldId="client_id" :fieldLabel="__('app.client')" fieldName="client_id" search="true">
                             <option value="">--</option>
@@ -142,6 +143,15 @@ $approveExpensePermission = user()->permission('approve_expenses');
                             @endforeach
                         </x-forms.select>
                     </div>
+
+                    <!-- <div class="col-md-6 col-lg-3">
+                        <x-forms.select fieldId="client_id" :fieldLabel="__('app.client')" fieldName="client_id" search="true">
+                            <option value="">--</option>
+                            @foreach ($clients as $client)
+                                <option value="{{ $client->id }}" @selected($client->id == $expense->client_id)>{{ $client->name }}</option>
+                            @endforeach
+                        </x-forms.select>
+                    </div> -->
 
                     @if($linkExpensePermission == 'all')
                         <div class="col-md-4">
@@ -298,7 +308,7 @@ $approveExpensePermission = user()->permission('approve_expenses');
             const url = "{{ route('expenses.update', $expense->id) }}";
             const clientId = $('#client_id').val();
             var data = $('#save-expense-data-form').serialize();
-            data += '&clientId=' + clientId;
+            //data += '&clientId=' + clientId;
 
             $.easyAjax({
                 url: url,

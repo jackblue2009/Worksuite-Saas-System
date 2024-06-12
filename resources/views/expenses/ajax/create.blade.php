@@ -54,7 +54,7 @@ $addExpenseCategoryPermission = user()->permission('manage_expense_category');
 
                     @if (user()->permission('add_expenses') == 'all')
                         <div class="col-md-6 col-lg-4">
-                            <x-forms.label class="mt-3" fieldId="user_id" :fieldLabel="__('app.employee')" fieldRequired="false">
+                            <x-forms.label class="mt-3" fieldId="user_id" :fieldLabel="__('app.employee')">
                             </x-forms.label>
                             <x-forms.input-group>
                                 <select class="form-control select-picker" name="user_id" id="user_id"
@@ -124,6 +124,15 @@ $addExpenseCategoryPermission = user()->permission('manage_expense_category');
                             @endforeach
                         </x-forms.select>
                     </div>
+
+                    <!-- <div class="col-md-6 col-lg-3">
+                        <x-forms.select fieldId="client_id" :fieldLabel="__('app.client')" fieldName="client_id" search="true">
+                            <option value="">--</option>
+                            @foreach ($clients as $client)
+                                <option value="{{ $client->id }}">{{ $client->name }}</option>
+                            @endforeach
+                        </x-forms.select>
+                    </div> -->
 
                     @if($linkExpensePermission == 'all')
                         <div class="col-md-4">
@@ -198,7 +207,7 @@ $addExpenseCategoryPermission = user()->permission('manage_expense_category');
             const url = "{{ route('expenses.store') }}";
             const clientId = $('#client_id').val();
             var data = $('#save-expense-data-form').serialize();
-            data += '&clientId=' + clientId;
+            //data += '&clientId=' + clientId;
 
             $.easyAjax({
                 url: url,
@@ -211,15 +220,9 @@ $addExpenseCategoryPermission = user()->permission('manage_expense_category');
                 file: true,
                 success: function(response) {
                     console.log(response);
-                    if (response.status =='success') {
+                    if (response.status == 'success') {
                         window.location.href = response.redirectUrl;
-                    } else {
-                        alert('An error occured - cannot save expense.');
                     }
-                },
-                error: function(xhr) {
-                    console.error('An error occurred: ', xhr.responseText);
-                    alert('An error occurred. Please try again.');
                 }
             });
         });

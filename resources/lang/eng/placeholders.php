@@ -117,6 +117,7 @@ return array(
         'liveRazorpayKey' => 'e.g. rzp_live_znKZOLn4TXXXXX',
         'paystackKey' => 'e.g. pk_live_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
         'flutterwaveKey' => 'e.g. FLWPUBK-xxxxxxxxxxxxxxxxxxxxx-X',
+        'benefitTranportalId' => 'e.g. 025xxxxxx',
     ),
     'bankaccount' => array(
         'accountName' => 'e.g. John Doe',

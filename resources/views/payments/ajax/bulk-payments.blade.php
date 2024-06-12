@@ -42,6 +42,9 @@
                                 <option value="all" @selected($paymentID == 'all')>--</option>
                                 <option value="Offline" id="offline_method" @selected ($paymentID == 'Offline')>
                                     {{ __('modules.offlinePayment.offlinePayment') }}</option>
+                                @if ($paymentGateway->benefit_status == 'active')
+                                    <option value="benefit" @selected($paymentID == 'benefit') >{{ __('app.benefit') }}</option>
+                                @endif
                                 @if ($paymentGateway->paypal_status == 'active')
                                     <option value="paypal" @selected($paymentID == 'paypal') >{{ __('app.paypal') }}</option>
                                 @endif

@@ -454,6 +454,7 @@ return [
     'verificationExpireIn' => 'Verification link will expire in :minutes minutes.',
     'razorpayPackageMessage' => 'Once activated, you must include the ID of the Razorpay product plan for each package.',
     'paystackPackageMessage' => 'Once activated, you must include the ID of the Paystack product plan for each package.',
+    'benefitPackageMessage' => 'Once activated, you must include the ID of the Benefit product plan for each package.',
     'payOnline' => 'Pay Online',
     'offlineUploadFile' => 'Please attach a file of your offline payment receipt',
     'offlinePackageRequestChange' => array(

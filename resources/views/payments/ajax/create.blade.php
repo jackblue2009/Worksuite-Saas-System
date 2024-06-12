@@ -100,6 +100,9 @@
                         search="true">
                             <option value="">--</option>
                             <option value="Offline"  id="offline_method" >{{ __('modules.offlinePayment.offlinePayment') }}</option>
+                            @if ($paymentGateway->benefit_status == 'active')
+                                <option value="benefit">{{ __('app.benefit') }}</option>
+                            @endif
                             @if ($paymentGateway->paypal_status == 'active')
                                 <option value="paypal">{{ __('app.paypal') }}</option>
                             @endif

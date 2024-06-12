@@ -187,7 +187,7 @@ class PaypalController extends Controller
                 $this->paymentFailed($ex, $payAmount, $invoice, null);
             }
 
-            if (\Config::get('app.debug')) {
+            if (Config::get('app.debug')) {
                 Session::put('error', 'Connection timeout');
 
                 return Redirect::to($redirectRoute);

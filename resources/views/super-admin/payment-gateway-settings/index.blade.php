@@ -18,7 +18,15 @@
                     <nav class="tabs border-bottom-grey">
                         <ul class="nav -primary" id="nav-tab" role="tablist">
                             <li>
-                                <a class="nav-item nav-link f-15 active paypal" data-toggle="tab"
+                                <a class="nav-item nav-link f-15 active benefit" data-toggle="tab"
+                                   href="{{ route('superadmin.settings.global-payment-gateway-settings.index') }}" role="tab"
+                                   aria-controls="nav-benefit"
+                                   aria-selected="true"><i class="fab fa-benefit f-12"></i> @lang('app.benefit') <i
+                                        class="fa fa-circle ml-1 {{ $credentials->benefit_status == 'active' ? 'text-light-green' : 'text-red' }}"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-item nav-link f-15 paypal" data-toggle="tab"
                                    href="{{ route('superadmin.settings.global-payment-gateway-settings.index') }}" role="tab"
                                    aria-controls="nav-paypal"
                                    aria-selected="true"><i class="fab fa-paypal f-12"></i> @lang('app.paypal') <i

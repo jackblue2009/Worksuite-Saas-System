@@ -82,6 +82,18 @@
                         </x-forms.select>
                         </div>
 
+                        <div class="col-md-4">
+                            <x-forms.datepicker
+                                fieldId="opening_date"
+                                :fieldLabel="__('modules.bankaccount.openingDate')"
+                                fieldName="opening_date"
+                                :fieldPlaceholder="__('placeholders.date')"
+                                fieldRequired="true"
+                                :fieldValue="$bankAccount->opening_date->format(company()->date_format)"
+                                :fieldType="'date'"
+                            />
+                        </div>
+
                         <div class="col-md-12 bankLogo @if ($bankAccount->type == 'cash') d-none @endif">
                             <x-forms.file allowedFileExtensions="png jpg jpeg bmp" class="mr-0 mr-lg-2 mr-md-2"
                                 :fieldLabel="__('modules.bankaccount.bankLogo')" fieldName="bank_logo"

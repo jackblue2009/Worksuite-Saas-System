@@ -34,6 +34,10 @@ class PaymentGatewayCredentialController extends AccountBaseController
         $tab = request('tab');
 
         switch ($tab) {
+        case 'benefit':
+            $this->webhookRoute = route('benefit.webhook', [$hash]);
+            $this->view = 'payment-gateway-settings.ajax.benefit';
+            break;
         case 'stripe':
             $this->webhookRoute = route('stripe.webhook', [$hash]);
             $this->view = 'payment-gateway-settings.ajax.stripe';
@@ -92,6 +96,9 @@ class PaymentGatewayCredentialController extends AccountBaseController
         $method = $request->payment_method;
 
         switch ($method) {
+        case 'benefit':
+            $this->benefit($request, $credential);
+            break;
         case 'stripe':
             $this->stripe($request, $credential);
             break;
@@ -125,6 +132,20 @@ class PaymentGatewayCredentialController extends AccountBaseController
 
         return Reply::success(__('messages.updateSuccess'));
 
+    }
+
+    // Added for Benefit recently
+    private function benefit($request, $credential)
+    {
+        if ($request->payment_method == 'benefit') {
+            $credential->benefit_mode = $request->benefit_mode;
+            $credential->benefit_client_id = $request->benefit_client_id;
+            $credential->benefit_key = $request->benefit_key;
+            $credential->benefit_secret = $request->benefit_secret;
+            $credential->test_benefit_key = $request->test_benefit_key;
+            $credential->test_benefit_secret = $request->test_benefit_secret;
+            $credential->benefit_status = $request->benefit_status ? 'active' : 'deactive';
+        }
     }
 
     private function paypal($request, $credential)

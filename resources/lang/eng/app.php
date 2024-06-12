@@ -94,6 +94,7 @@ return array(
     'clockin' => 'Clock In',
     'clockout' => 'Clock Out',
     'attendanceof' => 'Attendance Sheet of ',
+    'benefit' => 'Benefit',
     'paypal' => 'Paypal',
     'stripe' => 'Stripe',
     'razorpay' => 'Razorpay',
