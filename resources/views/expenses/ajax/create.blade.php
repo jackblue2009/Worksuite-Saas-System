@@ -52,7 +52,22 @@ $addExpenseCategoryPermission = user()->permission('manage_expense_category');
                             :fieldValue="\Carbon\Carbon::today()->format(company()->date_format)" />
                     </div>
 
-                    @if (user()->permission('add_expenses') == 'all')
+                    <!-- EMPLOYEE FIELD UPDATED TO BE OPTIONAL -->
+                    <div class="col-md-6 col-lg-4">
+                        <x-forms.label class="mt-3" fieldId="user_id" :fieldLabel="__('app.employee')">
+                        </x-forms.label>
+                        <x-forms.input-group>
+                            <select class="form-control select-picker" name="user_id" id="user_id"
+                                data-live-search="true" data-size="8">
+                                <option value="">--</option>
+                                @foreach ($employees as $item)
+                                    <x-user-option :user="$item" />
+                                @endforeach
+                            </select>
+                        </x-forms.input-group>
+                    </div>
+
+                    {{-- @if (user()->permission('add_expenses') == 'all')
                         <div class="col-md-6 col-lg-4">
                             <x-forms.label class="mt-3" fieldId="user_id" :fieldLabel="__('app.employee')">
                             </x-forms.label>
@@ -68,7 +83,7 @@ $addExpenseCategoryPermission = user()->permission('manage_expense_category');
                         </div>
                     @else
                         <input type="hidden" name="user_id" value="{{ user()->id }}">
-                    @endif
+                    @endif --}}
 
                     <div class="col-md-6 col-lg-4">
                         @if(isset($projectName))
@@ -267,7 +282,12 @@ $addExpenseCategoryPermission = user()->permission('manage_expense_category');
                 type: "GET",
                 data: {'categoryId' : categoryId, 'userId' : userId},
                 success: function(response) {
-                    $('#user_id').html('<option value="">--</option>'+response.employees);
+                    let employeeOptions = '<option value="">--</option>';
+                    if (response.employees) {
+                        employeeOptions += response.employees;
+                    }
+                    //$('#user_id').html('<option value="">--</option>'+response.employees);
+                    $('#user_id').html(employeeOptions);
                     $('#user_id').selectpicker('refresh')
                 }
             });

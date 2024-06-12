@@ -66,7 +66,22 @@ $approveExpensePermission = user()->permission('approve_expenses');
                         </x-forms.input-group>
                     </div>
 
-                    @if (user()->permission('add_expenses') == 'all')
+                    <!-- EMPLOYEE FIELD UPDATED TO BE OPTIONAL -->
+                    <div class="col-md-6 col-lg-4">
+                        <x-forms.label class="mt-3" fieldId="user_id" :fieldLabel="__('app.employee')">
+                        </x-forms.label>
+                        <x-forms.input-group>
+                            <select class="form-control select-picker" name="user_id" id="user_id"
+                                data-live-search="true" data-size="8">
+                                <option value="">--</option>
+                                @foreach ($employees as $item)
+                                    <x-user-option :user="$item" :selected="$item->id == $expense->user_id" />
+                                @endforeach
+                            </select>
+                        </x-forms.input-group>
+                    </div>
+
+                    {{-- @if (user()->permission('add_expenses') == 'all')
                         <div class="col-md-6 col-lg-4">
                             <x-forms.label class="mt-3" fieldId="user_id" :fieldLabel="__('app.employee')">
                             </x-forms.label>
@@ -82,7 +97,7 @@ $approveExpensePermission = user()->permission('approve_expenses');
                         </div>
                     @else
                         <input type="hidden" name="user_id" value="{{ user()->id }}">
-                    @endif
+                    @endif --}}
 
                     <div class="col-lg-4 col-md-6">
                         <x-forms.label class="mt-3" fieldId="category_id"
@@ -274,9 +289,20 @@ $approveExpensePermission = user()->permission('approve_expenses');
                 type: "GET",
                 data: {'userId' : userId, 'categoryId' : categoryId},
                 success: function(response) {
-                    $('#project_id').html('<option value="">--</option>'+response.data);
+                    let projectOptions = '<option value="">--</option>';
+                    if (response.data) {
+                        projectOptions += response.data;
+                    }
+                    //$('#project_id').html('<option value="">--</option>'+response.data);
+                    $('#project_id').html(projectOptions);
                     $('#project_id').selectpicker('refresh')
-                    $('#expense_category_id').html('<option value="">--</option>'+response.category);
+
+                    let categoryOptions = '<option value="">--</option>';
+                    if (response.category) {
+                        categoryOptions += response.category;
+                    }
+                    //$('#expense_category_id').html('<option value="">--</option>'+response.category);
+                    $('#expense_category_id').html(categoryOptions);
                     $('#expense_category_id').selectpicker('refresh')
                 }
             });
@@ -291,7 +317,12 @@ $approveExpensePermission = user()->permission('approve_expenses');
                 type: "GET",
                 data: {'categoryId' : categoryId, 'userId' : userId},
                 success: function(response) {
-                    $('#user_id').html('<option value="">--</option>'+response.employees);
+                    let employeeOptions = '<option value="">--</option>';
+                    if (response.employees) {
+                        employeeOptions += response.employees;
+                    }
+                    //$('#user_id').html('<option value="">--</option>'+response.employees);
+                    $('#user_id').html(employeeOptions);
                     $('#user_id').selectpicker('refresh')
                 }
             });

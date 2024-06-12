@@ -198,17 +198,34 @@ $recurringExpensesPermission = user()->permission('manage_recurring_expense');
             window.LaravelDataTables["expenses-table"].draw(false);
         }
 
-        $('#filter-status, #employee2,#project_id2,#category_id')
-            .on('change keyup',
-                function() {
-                    if ($('#filter-status').val() != "all") {
+        // UPDATED FOR EMPLOYEE FIELD TO BE OPTIONAL
+        $('#filter-status, #employee2, #project_id2, #category_id')
+            .on('change keyup', function() {
+                    var employeeVal = $('#employee2').val();
+                    var statusVal = $('#filter-status').val();
+
+                    if (statusVal != "all" || (employeeVal != "all" && employeeVal != "")) {
                         $('#reset-filters').removeClass('d-none');
                         showTable();
                     } else {
                         $('#reset-filters').addClass('d-none');
                         showTable();
                     }
-                });
+                }
+            );
+
+        // $('#filter-status, #employee2,#project_id2,#category_id')
+        //     .on('change keyup',
+        //         function() {
+        //             if ($('#filter-status').val() != "all") {
+        //                 $('#reset-filters').removeClass('d-none');
+        //                 showTable();
+        //             } else {
+        //                 $('#reset-filters').addClass('d-none');
+        //                 showTable();
+        //             }
+        //         }
+        //     );
 
         $('#search-text-field').on('keyup', function() {
             if ($('#search-text-field').val() != "") {
