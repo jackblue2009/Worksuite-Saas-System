@@ -932,6 +932,7 @@ return array(
     ),
     'estimates' => array(
         'createEstimate' => 'Create Estimate',
+        'createdDate' => 'Created Date',
         'validTill' => 'Valid Till',
         'waiting' => 'Waiting',
         'accepted' => 'Accepted',

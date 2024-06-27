@@ -284,6 +284,13 @@ $viewUnassignedTasksPermission = user()->permission('view_unassigned_tasks');
     @include('sections.datatable_js')
 
     <script>
+        $(document).ready(function() {
+            var table = window.LaravelDataTables('allTasks-table');
+
+            table.column('completed_on:name').visible(false);
+            table.column('hours_logged:name').visible(false);
+        });
+
         $(document).ready(()=>{
             let assignedVal = "{{ $assignedTo }}";
             if(assignedVal){
@@ -532,6 +539,14 @@ $viewUnassignedTasksPermission = user()->permission('view_unassigned_tasks');
                 }
             })
         };
+
+        $(document).ready(function() {
+            var table = window.LaravelDataTables['allTasks-table'];
+
+            // Code to hide columns
+            table.column('completed_on:name').visible(false);
+            table.column('timeLogged:name').visible(false);
+        });
 
         $('#allTasks-table').on('change', '.change-status', function() {
             var url = "{{ route('tasks.change_status') }}";

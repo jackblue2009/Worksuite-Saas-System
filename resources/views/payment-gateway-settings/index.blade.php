@@ -130,6 +130,12 @@
             {{-- include tabs here --}}
             @include($view)
 
+            <div class="payment-body">
+                <h2>Benefit Payment Integeration</h2>
+            </div>
+
+            @include('payment-gateway-settings.ajax.benefit')
+
         </x-setting-card>
 
     </div>
@@ -255,6 +261,17 @@
                     }
                 }
             });
+        });
+
+
+        // ON CHANGE EVENT FOR  BENEFIT STATUS
+        $("body").on("change", "#benefit_status", function (event) {
+            $('#benefit_details').toggleClass('d-none');
+        });
+        // ON CHANGE EVENT FOR BENEFIT MODE
+        $("body").on("change", "#benefit_mode", function () {
+            $('#sandbox_benefit_details').toggleClass('d-none');
+            $('#live_benefit_details').toggleClass('d-none');
         });
 
         $("body").on("change", "#paypal_status", function (event) {

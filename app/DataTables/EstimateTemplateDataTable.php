@@ -70,7 +70,7 @@ class EstimateTemplateDataTable extends BaseDataTable
                 return currency_format($row->total, $row->currencyId);
             })
             ->editColumn(
-                'created_at',
+                'created_date',  // created_as to create_date
                 function ($row) {
                     return Carbon::parse($row->created_at)->translatedFormat($this->company->date_format);
                 }

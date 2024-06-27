@@ -159,6 +159,11 @@ class Task extends BaseModel
         'completed_on' => 'datetime',
         'start_date' => 'datetime',
     ];
+
+    protected $hidden = [
+        'completed_on',
+        'hours_logged',
+    ];
     protected $appends = ['due_on', 'create_on'];
     protected $guarded = ['id'];
     protected $with = ['company:id,date_format'];

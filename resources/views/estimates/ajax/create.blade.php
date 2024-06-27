@@ -36,6 +36,19 @@
                 </div>
             </div>
             <!-- INVOICE NUMBER END -->
+
+            <!-- INVOICE CREATED DATE START -->
+            <div class="col-md-6 col-lg-4">
+                <div class="form-group mb-lg-0 mb-md-0 mb-4">
+                    <x-forms.label fieldId="create_date" :fieldLabel="__('modules.estimates.createdDate')" fieldRequired="true">
+                    </x-forms.label>
+                    <div class="input-group">
+                        <input type="text" id="create_date" name="create_date" class="px-6 position-relative text-dark font-weight-normal form-control height-35 rounded p-0 text-left f-15 custom-date-picker" placeholder="@lang('placeholders.date')" value="{{ isset($estimate) ? $estimate->create_date->format(company()->date_format) : \Carbon\Carbon::now(company()->timezone)->format(company()->date_format) }}">
+                    </div>
+                </div>
+            </div>
+            <!-- INVOICE CREATED DATE END -->
+
             <!-- INVOICE DATE START -->
             <div class="col-md-6 col-lg-4">
                 <div class="form-group mb-4">

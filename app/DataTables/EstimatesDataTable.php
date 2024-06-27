@@ -217,7 +217,8 @@ class EstimatesDataTable extends BaseDataTable
                 'estimates.added_by',
                 'estimates.hash',
                 'invoices.estimate_id',
-                'estimates.created_at'
+                'estimates.create_date'
+                //'estimates.created_at'  // change from .created_at to .create_date
             ]);
 
         if ($request->startDate !== null && $request->startDate != 'null' && $request->startDate != '') {

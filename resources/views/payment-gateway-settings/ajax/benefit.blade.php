@@ -6,7 +6,7 @@
         <div class="col-lg-12 mb-3">
             <x-forms.checkbox :fieldLabel="__('modules.payments.benefitStatus')" fieldName="benefit_status"
                 fieldId="benefit_status" fieldValue="active" fieldRequired="true"
-                :checked="$credentials->benefit_status == 'active'" />
+                :checked="$credentials->benefit_status == 'active'" @checked(true) />
         </div>
     </div>
     <div class="row @if ($credentials->benefit_status == 'deactive') d-none @endif" id="benefit_details">
@@ -17,42 +17,55 @@
             </x-forms.select>
         </div>
 
-        <div class="col-lg-6 benefit_live {{$credentials->benefit_mode == 'live' ? '' : 'd-none'}}">
-            <x-forms.text class="mr-0 mr-lg-2 mr-md-2" :fieldLabel="__('modules.payments.benefitTranportalId')"
-                fieldName="benefit_key" fieldId="benefit_key" :fieldValue="$credentials->benefit_key"
-                :fieldPlaceholder="__('placeholders.paymentGateway.benefitTranportalId')" fieldRequired="true"></x-forms.text>
-        </div>
-        <div class="col-lg-6 benefit_live {{$credentials->benefit_mode == 'live' ? '' : 'd-none'}}">
-            <x-forms.label class="mt-3" fieldId="password" :fieldLabel="__('modules.payments.benefitTranportalSecret')" fieldRequired="true">
-            </x-forms.label>
-            <x-forms.input-group>
-                <input type="password" name="benefit_secret" id="benefit_secret" class="form-control height-35 f-14"
-                    value="{{ $credentials->benefit_secret }}" autocomplete="off">
-                <x-slot name="preappend">
-                    <button type="button" data-toggle="tooltip" data-original-title="{{ __('messages.viewKey') }}"
-                        class="btn btn-outline-secondary border-grey height-35 toggle-password"><i
-                            class="fa fa-eye"></i></button>
-                </x-slot>
-            </x-forms.input-group>
+        <!-- SANDBOX ELEMENTS -->
+        <div class="col-lg-12">
+            <div id="sandbox_benefit_details" class="row @if ($credentials->benefit_mode ==
+                'live') d-none @endif">
+                <div class="col-lg-6 benefit_sandbox {{$credentials->benefit_mode == 'sandbox' ? '' : 'd-none'}}">
+                    <x-forms.text class="mr-0 mr-lg-2 mr-md-2" :fieldLabel="__('app.test') . ' ' . __('modules.payments.benefitTranportalId')"
+                        fieldName="test_benefit_key" fieldId="test_benefit_key" :fieldValue="$credentials->test_benefit_key"
+                        :fieldPlaceholder="__('placeholders.paymentGateway.benefitTranportalId')" fieldRequired="true"></x-forms.text>
+                </div>
+                <div class="col-lg-6 benefit_sandbox {{$credentials->benefit_mode == 'sandbox' ? '' : 'd-none'}}">
+                    <x-forms.label class="mt-3" fieldId="password" :fieldLabel="__('app.test') . ' ' . __('modules.payments.benefitTranportalSecret')" fieldRequired="true">
+                    </x-forms.label>
+                    <x-forms.input-group>
+                        <input type="password" name="test_benefit_secret" id="test_benefit_secret" class="form-control height-35 f-14"
+                            value="{{ $credentials->test_benefit_secret }}" autocomplete="off">
+                        <x-slot name="preappend">
+                            <button type="button" data-toggle="tooltip" data-original-title="{{ __('messages.viewKey') }}"
+                                class="btn btn-outline-secondary border-grey height-35 toggle-password"><i
+                                    class="fa fa-eye"></i></button>
+                        </x-slot>
+                    </x-forms.input-group>
+                </div>
+            </div>
         </div>
 
-        <div class="col-lg-6 benefit_sandbox {{$credentials->benefit_mode == 'sandbox' ? '' : 'd-none'}}">
-            <x-forms.text class="mr-0 mr-lg-2 mr-md-2" :fieldLabel="__('app.test') . ' ' . __('modules.payments.benefitTranportalId')"
-                fieldName="test_benefit_key" fieldId="test_benefit_key" :fieldValue="$credentials->test_benefit_key"
-                :fieldPlaceholder="__('placeholders.paymentGateway.benefitTranportalId')" fieldRequired="true"></x-forms.text>
-        </div>
-        <div class="col-lg-6 benefit_sandbox {{$credentials->benefit_mode == 'sandbox' ? '' : 'd-none'}}">
-            <x-forms.label class="mt-3" fieldId="password" :fieldLabel="__('app.test') . ' ' . __('modules.payments.benefitTranportalSecret')" fieldRequired="true">
-            </x-forms.label>
-            <x-forms.input-group>
-                <input type="password" name="test_benefit_secret" id="test_benefit_secret" class="form-control height-35 f-14"
-                    value="{{ $credentials->test_benefit_secret }}" autocomplete="off">
-                <x-slot name="preappend">
-                    <button type="button" data-toggle="tooltip" data-original-title="{{ __('messages.viewKey') }}"
-                        class="btn btn-outline-secondary border-grey height-35 toggle-password"><i
-                            class="fa fa-eye"></i></button>
-                </x-slot>
-            </x-forms.input-group>
+        <!-- LIVE ELEMENTS -->
+        <div class="col-lg-12">
+            <div id="live_benefit_details" class="row @if ($credentials->paypal_mode ==
+                'sandbox') d-none @endif">
+                <!-- ADD INSIDE CLASS ATTRIBUTE -->
+                <div class="col-lg-6 benefit_live {{$credentials->benefit_mode == 'live' ? '' : 'd-none'}}">
+                    <x-forms.text class="mr-0 mr-lg-2 mr-md-2" :fieldLabel="__('modules.payments.benefitTranportalId')"
+                        fieldName="benefit_key" fieldId="benefit_key" :fieldValue="$credentials->benefit_key"
+                        :fieldPlaceholder="__('placeholders.paymentGateway.benefitTranportalId')" fieldRequired="true"></x-forms.text>
+                </div>
+                <div class="col-lg-6 benefit_live {{$credentials->benefit_mode == 'live' ? '' : 'd-none'}}">
+                    <x-forms.label class="mt-3" fieldId="password" :fieldLabel="__('modules.payments.benefitTranportalSecret')" fieldRequired="true">
+                    </x-forms.label>
+                    <x-forms.input-group>
+                        <input type="password" name="benefit_secret" id="benefit_secret" class="form-control height-35 f-14"
+                            value="{{ $credentials->benefit_secret }}" autocomplete="off">
+                        <x-slot name="preappend">
+                            <button type="button" data-toggle="tooltip" data-original-title="{{ __('messages.viewKey') }}"
+                                class="btn btn-outline-secondary border-grey height-35 toggle-password"><i
+                                    class="fa fa-eye"></i></button>
+                        </x-slot>
+                    </x-forms.input-group>
+                </div>
+            </div>
         </div>
 
         <div class="col-lg-12">

@@ -94,6 +94,8 @@ class Estimate extends BaseModel
     protected $appends = ['total_amount', 'valid_date'];
     protected $with = ['currency'];
 
+    protected $dates = ['create_date'];
+
     const CUSTOM_FIELD_MODEL = 'App\Models\Estimate';
 
     public function items(): HasMany

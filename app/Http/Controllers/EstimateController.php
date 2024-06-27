@@ -151,6 +151,8 @@ class EstimateController extends AccountBaseController
 
         $estimate = new Estimate();
         $estimate->client_id = $request->client_id;
+        // Added new for create date
+        $estimate->create_date = Carbon::parse($request->create_date);
         $estimate->valid_till = companyToYmd($request->valid_till);
         $estimate->sub_total = round($request->sub_total, 2);
         $estimate->total = round($request->total, 2);
@@ -346,6 +348,8 @@ class EstimateController extends AccountBaseController
 
         $estimate = Estimate::findOrFail($id);
         $estimate->client_id = $request->client_id;
+        //Add new for create date
+        $estimate->create_date = Carbon::parse($request->create_date);
         $estimate->valid_till = companyToYmd($request->valid_till);
         $estimate->sub_total = round($request->sub_total, 2);
         $estimate->total = round($request->total, 2);
