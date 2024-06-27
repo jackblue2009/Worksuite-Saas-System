@@ -313,6 +313,7 @@ class EstimatesDataTable extends BaseDataTable
     protected function getColumns()
     {
 
+        // change created_at to create_date in data => ..., name => ...
         $data = [
             '#' => ['data' => 'DT_RowIndex', 'orderable' => false, 'searchable' => false, 'visible' => false, 'title' => '#'],
             __('app.id') => ['data' => 'id', 'name' => 'id', 'title' => __('app.id'), 'visible' => false],
@@ -322,7 +323,7 @@ class EstimatesDataTable extends BaseDataTable
             __('app.email') => ['data' => 'email', 'name' => 'users.email',  'visible' => false, 'title' => __('app.email')],
             __('modules.invoices.total') => ['data' => 'total', 'name' => 'total', 'title' => __('modules.invoices.total')],
             __('modules.estimates.validTill') => ['data' => 'valid_till', 'name' => 'valid_till', 'title' => __('modules.estimates.validTill')],
-            __('app.createdOn') => ['data' => 'created_at', 'name' => 'created_at', 'title' => __('app.createdOn')],
+            __('app.createdOn') => ['data' => 'create_date', 'name' => 'create_date', 'title' => __('app.createdOn')],
             __('app.status') => ['data' => 'status', 'name' => 'status', 'title' => __('app.status')]
         ];
 
